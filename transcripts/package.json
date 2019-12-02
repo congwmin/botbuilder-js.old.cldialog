@@ -1,0 +1,21 @@
+{
+    "name": "transcript-tests",
+    "version": "1.0.0",
+    "description": "Bot Builder tests using transcripts.",
+    "scripts": {
+        "test": "mocha tests/*.test.js"
+    },
+    "author": "Microsoft",
+    "license": "MIT",
+    "dependencies": {
+        "@types/node": "^10.12.18",
+        "@types/restify": "^7.2.1",
+        "botbuilder": "^4.2.1",
+        "botbuilder-ai": "^4.2.1",
+        "botbuilder-dialogs": "^4.2.1"
+    },
+    "devDependencies": {
+        "mocha": "^5.2.0",
+        "nyc": "^13.2.0"
+    }
+}

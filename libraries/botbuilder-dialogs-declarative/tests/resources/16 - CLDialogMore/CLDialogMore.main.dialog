@@ -1,0 +1,61 @@
+{
+    "$schema": "../../app.schema",
+    "$type": "Microsoft.AdaptiveDialog",
+    "autoEndDialog": false,
+    "recognizer": {
+        "$type": "Microsoft.RegexRecognizer",
+        "intents": {
+            "JokeIntent": "joke",
+            "FortuneTellerIntent": "fortune|future",
+            "weatherIntent": "weather"
+        }
+    },
+    "steps": [
+        {
+            "$type": "Microsoft.IfCondition",
+            "condition": "user.name == null",
+            "steps": [
+                {
+                    "$type": "Microsoft.TextInput",
+                    "valueProperty": "user.name",
+                    "prompt": "Hello, I'm Zoidberg. What is your name?"
+                }
+            ]
+        },
+        {
+            "$type": "Microsoft.SendActivity",
+            "activity": "Hello {user.name}, nice to talk to you!"
+        }
+    ],
+    "rules": [
+        {
+            "$type": "Microsoft.IntentRule",
+            "intent": "#JokeIntent",
+            "steps": [
+                "CLDialogMore.TellJokeDialog"
+            ]
+        },
+        {
+            "$type": "Microsoft.IntentRule",
+            "intent": "#FortuneTellerIntent",
+            "steps": [
+                "CLDialogMore.FortuneTellerDialog"
+            ]
+        },
+        {
+            "$type": "Microsoft.IntentRule",
+            "intent": "#weatherIntent",
+            "steps": [
+                {
+                    "$type": "Microsoft.CLDialog",
+                    "luisAuthoringKey": "db27ae1536f044a4b07df08b607dcd17",
+                    "modelId": "880b7acf-00fd-4f38-a1d6-4ed405610959"
+                },
+                {
+                    "$type": "Microsoft.EndTurn"
+                }
+            ]
+        }
+        
+    ]
+}

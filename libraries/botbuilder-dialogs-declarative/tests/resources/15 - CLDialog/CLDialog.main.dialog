@@ -1,0 +1,26 @@
+{
+    "$schema": "../../app.schema",
+    "$type": "Microsoft.AdaptiveDialog",
+    "steps": [
+        {
+            "$type": "Microsoft.IfCondition",
+            "condition": "conversation.name != null",
+            "steps": [
+                {
+                    "$type": "Microsoft.SendActivity",
+                    "activity": "Hi {conversation.name}!"
+                }
+            ],
+            "elseSteps": [
+                {
+                    "$type": "Microsoft.EndTurn"
+                },
+                {
+                    "$type": "Microsoft.CLDialog",
+                    "luisAuthoringKey": "db27ae1536f044a4b07df08b607dcd17",
+                    "modelId": "880b7acf-00fd-4f38-a1d6-4ed405610959"
+                }
+            ]
+        }
+    ]
+}
